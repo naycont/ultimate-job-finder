@@ -6,6 +6,11 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name: 'home',
+      redirect: 'jobs'
+    },
+    {
+      path: '/jobs',
       name: 'jobs',
       component: JobsView
     }
