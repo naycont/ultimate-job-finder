@@ -5,4 +5,7 @@
   max-width: 100%;
   margin: 0 auto;
   font-weight: normal;
+  main {
+    padding: var(--ui-padding);
+  }
 }
