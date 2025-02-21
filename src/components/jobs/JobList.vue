@@ -1,36 +1,13 @@
 <script lang="ts" setup>
-const jobs = [
-  {
-    id: 1,
-    title: 'Frontend Developer',
-    categoryId: 3,
-    category: 'Frontend',
-    company: 'TechCorp',
-    description: "We're looking for a Vue.js developer...",
-    location: 'Remote',
-    createdAt: '02-21-2025'
-  },
-  {
-    id: 2,
-    title: 'Backend Developer',
-    categoryId: 2,
-    category: 'Backend',
-    company: 'DevFirm',
-    description: 'Looking for a Node.js expert...',
-    location: 'New York',
-    createdAt: '02-20-2025'
-  },
-  {
-    id: 2,
-    title: 'UI/Graphic Designer',
-    categoryId: 1,
-    category: 'UX/UI',
-    company: 'DevFirm',
-    description: 'We are looking for a UI/Marketing Designer...',
-    location: 'On site',
-    createdAt: '02-20-2025'
+import type Job from '@/interfaces/Job'
+import type { PropType } from 'vue'
+
+defineProps({
+  items: {
+    type: Array as PropType<Array<Job>>,
+    default: () => []
   }
-]
+})
 </script>
 <template>
   <div>
@@ -47,7 +24,7 @@ const jobs = [
         </tr>
       </thead>
       <tbody>
-        <tr v-for="job in jobs" :key="`job-${job.id}`">
+        <tr v-for="job in items" :key="`job-${job.id}`">
           <td>{{ job.title }}</td>
           <td>{{ job.company }}</td>
           <td>{{ job.location }}</td>
