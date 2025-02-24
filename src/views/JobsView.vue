@@ -6,17 +6,17 @@ import type Job from '@/interfaces/Job'
 
 const jobs = ref<Job[]>([])
 
-const getJobList = () => {
+const getJobList = (): Array<Job> => {
   const response = jobService.query()
-  jobs.value = response?.data?.length ? response.data : []
+  return response.data
 }
 
-onMounted(() => {
-  getJobList()
+onMounted(async () => {
+  jobs.value = getJobList()
 })
 </script>
 <template>
-  <div class="d-flex justify-center flex-column align-center h-100">
+  <div class="d-flex justify-center flex-column align-center">
     <JobList :items="jobs" />
   </div>
 </template>
