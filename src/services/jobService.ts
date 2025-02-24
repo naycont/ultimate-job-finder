@@ -5,5 +5,12 @@ export const jobService = {
     return {
       data: jobList
     }
+  },
+
+  get: (jobId: number) => {
+    const job = jobList.find(({ id }) => id === jobId)
+    return {
+      data: job
+    }
   }
 }

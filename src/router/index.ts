@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import JobsView from '@/views/JobsView.vue'
+import Jobs from '@/views/Jobs.vue'
+import Job from '@/views/Job.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +13,12 @@ const router = createRouter({
     {
       path: '/jobs',
       name: 'jobs',
-      component: JobsView
+      component: Jobs
+    },
+    {
+      path: '/jobs/:id',
+      name: 'job',
+      component: Job
     }
   ]
 })

@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import type Job from '@/interfaces/Job'
 import type { PropType } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 defineProps({
   items: {
@@ -8,6 +11,10 @@ defineProps({
     default: () => []
   }
 })
+
+const goToDetails = (jobId: number) => {
+  router.push({ name: 'job', params: { id: jobId } })
+}
 </script>
 <template>
   <div>
@@ -36,7 +43,7 @@ defineProps({
           </td>
           <td>{{ job.createdAt }}</td>
           <td>
-            <v-btn flat size="small" color="primary"> Details </v-btn>
+            <v-btn flat size="small" color="primary" @click="goToDetails(job.id)"> Details </v-btn>
           </td>
         </tr>
       </tbody>
