@@ -18,21 +18,21 @@ const goToDetails = (jobId: number) => {
 </script>
 <template>
   <div class="w-100">
-    <v-table>
-      <thead>
+    <v-table data-testid="jobList">
+      <thead data-testid="jobList__headers">
         <tr>
-          <th class="text-left">Title</th>
-          <th class="text-left">Company</th>
-          <th class="text-left">Location</th>
-          <th class="text-left">Description</th>
-          <th class="text-left">Category</th>
-          <th class="text-left">Published</th>
-          <th class="text-left"></th>
+          <th data-testid="jobList__headers--title" class="text-left">Title</th>
+          <th data-testid="jobList__headers--company" class="text-left">Company</th>
+          <th data-testid="jobList__headers--location" class="text-left">Location</th>
+          <th data-testid="jobList__headers--description" class="text-left">Description</th>
+          <th data-testid="jobList__headers--category" class="text-left">Category</th>
+          <th data-testid="jobList__headers--published" class="text-left">Published</th>
+          <th data-testid="jobList__headers--actions" class="text-left"></th>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="job in items" :key="`job-${job.id}`">
-          <td>{{ job.title }}</td>
+      <tbody data-testid="jobList__items">
+        <tr :data-testid="`jobList__items--${job.id}`" v-for="job in items" :key="`job-${job.id}`">
+          <td :data-testid="`jobList__items--${job.id}-title`">{{ job.title }}</td>
           <td>{{ job.company }}</td>
           <td>{{ job.location }}</td>
           <td>{{ job.description }}</td>
