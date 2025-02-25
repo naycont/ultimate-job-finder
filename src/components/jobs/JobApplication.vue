@@ -3,9 +3,14 @@ import FileUploader from '@/components/shared/FileUploader.vue'
 import { defineProps, type PropType, ref } from 'vue'
 import type Job from '@/interfaces/Job'
 import type JobApplication from '@/interfaces/JobApplication'
-import { formValidationRules } from '@/utils/JobUtils'
+import { formValidationRules } from '@/utils/jobUtils'
 import { VForm } from 'vuetify/components'
-import { applicationService } from '@/services/ApplicationService'
+import { applicationService } from '@/services/applicationService'
+import { useNotificationStore } from '@/stores/notification'
+import { useRouter } from 'vue-router'
+
+const navigationStore = useNotificationStore()
+const router = useRouter()
 
 const props = defineProps({
   job: {
@@ -22,7 +27,7 @@ const jobApplication = ref<JobApplication>({
   name: '',
   lastname: '',
   mothersLastname: '',
-  email: 'sda@asdasd.com',
+  email: '',
   location: '',
   resumeUrl: ''
 })
@@ -41,7 +46,14 @@ const submitAplication = async (event: SubmitEvent) => {
     try {
       isLoading.value = true
       const response = await applicationService.sendApplication(jobApplication.value)
+      console.log(response)
       if (response?.data) {
+        navigationStore.toggle({
+          opened: true,
+          type: 'success',
+          message: 'Application submitted!'
+        })
+        router.push({ name: 'jobs' })
       }
     } catch {
     } finally {
@@ -52,7 +64,7 @@ const submitAplication = async (event: SubmitEvent) => {
 }
 </script>
 <template>
-  <v-row justify="center" class="my-4">
+  <v-row justify="center" class="mt-2">
     <v-col sm="12" md="6" lg="6" xl="4">
       <div class="d-flex flex-column">
         <span class="text-h5">{{ job.title }}</span>
@@ -107,9 +119,9 @@ const submitAplication = async (event: SubmitEvent) => {
             required
           />
           <div class="d-flex justify-end mt-4">
-            <v-btn type="submit" color="primary" @click="submitAplication" :loading="isLoading"
-              >Submit</v-btn
-            >
+            <v-btn type="submit" color="primary" @click="submitAplication" :loading="isLoading">
+              Submit
+            </v-btn>
           </div>
         </v-form>
       </v-card>

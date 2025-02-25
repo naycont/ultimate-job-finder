@@ -48,12 +48,12 @@ onMounted(async () => {
 
 <template>
   <div class="job">
-    <div class="mb-4">
+    <div>
       <v-btn class="mr-1" density="comfortable" flat icon="arrow_back" @click="goToJobs"></v-btn>
       Back
     </div>
-    <v-container>
-      <v-tabs v-model="activeTab" align-tabs="center">
+    <v-container class="mt-0 pa-0">
+      <v-tabs v-model="activeTab" align-tabs="center" class="mt-0">
         <v-tab value="job">Job Details</v-tab>
         <v-tab value="application">Application</v-tab>
       </v-tabs>
@@ -76,6 +76,6 @@ onMounted(async () => {
 <style lang="scss">
 .job {
   min-height: 100%;
-  padding: var(--ui-padding);
+  padding: 0 var(--ui-padding);
 }
 </style>

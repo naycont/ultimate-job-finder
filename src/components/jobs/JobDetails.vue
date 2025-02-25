@@ -11,7 +11,7 @@ defineProps({
 </script>
 <template>
   <v-row justify="center">
-    <v-col sm="12" md="6" lg="4">
+    <v-col sm="12" md="6" lg="6" xl="4">
       <v-card :subtitle="job.company">
         <template v-slot:title>
           <span class="text-h5">{{ job.title }}</span>
