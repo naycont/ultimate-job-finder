@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "Frontend Developer",
-    "categoryId": 3,
+    "categoryId": 1,
     "category": "Frontend",
     "company": "TechCorp",
     "description": "We're looking for a Vue.js developer...",
@@ -22,7 +22,7 @@
   {
     "id": 3,
     "title": "UI/Graphic Designer",
-    "categoryId": 1,
+    "categoryId": 7,
     "category": "UX/UI",
     "company": "DevFirm",
     "description": "We are looking for a UI/Marketing Designer...",

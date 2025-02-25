@@ -4,6 +4,7 @@ import JobList from '@/components/jobs/JobList.vue'
 import JobFilters from '@/components/jobs/JobFilters.vue'
 import { jobService } from '@/services/jobService'
 import type Job from '@/interfaces/Job'
+import type JobQueryParams from '@/interfaces/JobQueryParams'
 
 const jobs = ref<Job[]>([])
 let originalJobs: Job[] = []
@@ -26,16 +27,14 @@ const getJobList = (): Array<Job> => {
   return jobList
 }
 
-const onSearchJob = (searchString: string): void => {
-  if (searchString.trim() === '') return
-
-  const response = jobService.filter({ searchString })
+const onSearchJob = (params: JobQueryParams): void => {
+  const response = jobService.filter(params)
   const filteredJobs = response?.data?.length ? response.data : []
 
   jobs.value = filteredJobs
 }
 
-const onClearSearchBox = () => {
+const onClearFilters = () => {
   jobs.value = [...originalJobs]
 }
 
@@ -47,7 +46,7 @@ onMounted(async () => {
   <div class="jobs">
     <div class="d-flex justify-center text-h2 my-4">Find what's next:</div>
 
-    <JobFilters @search-job="onSearchJob" @clearSearchBox="onClearSearchBox" />
+    <JobFilters @search-job="onSearchJob" @clear-filters="onClearFilters" />
 
     <div class="d-flex justify-center flex-column align-center mt-4">
       <JobList :items="jobs" />

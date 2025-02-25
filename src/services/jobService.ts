@@ -1,5 +1,5 @@
 import jobList from '@/services/mockData/jobsList.json'
-import JobQueryParams from '@/interfaces/JobQueryParams'
+import type JobQueryParams from '@/interfaces/JobQueryParams'
 
 export const jobService = {
   query: () => {
@@ -23,11 +23,24 @@ export const jobService = {
   },
 
   filter: (params: JobQueryParams) => {
-    const { searchString } = params
+    const { searchString, categoryId } = params
 
-    const filteredJobs = jobList.filter(({ title }) => {
-      const found = title.search(new RegExp(searchString, 'i'))
-      return found >= 0
+    if (searchString.trim() === '' && !Boolean(categoryId)) return
+
+    const filteredJobs = jobList.filter((job) => {
+      let titleFound = 0
+      let categoryMatch = true
+
+      if (searchString.trim() !== '') {
+        // filter by title
+        titleFound = job.title.search(new RegExp(searchString, 'i'))
+      }
+
+      if (categoryId) {
+        categoryMatch = Boolean(job.categoryId === categoryId)
+      }
+
+      return titleFound >= 0 && categoryMatch
     })
 
     return {
