@@ -9,7 +9,11 @@ const notification = computed(() => {
 })
 
 const toggleNotification = () => {
-  navigationStore.toggle()
+  navigationStore.toggle({
+    opened: false,
+    type: '',
+    message: ''
+  })
 }
 </script>
 
