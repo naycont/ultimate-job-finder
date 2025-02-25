@@ -26,7 +26,7 @@ const goToDetails = (jobId: number) => {
           <th class="text-left">Location</th>
           <th class="text-left">Description</th>
           <th class="text-left">Category</th>
-          <th class="text-left">Created At</th>
+          <th class="text-left">Published</th>
           <th class="text-left"></th>
         </tr>
       </thead>

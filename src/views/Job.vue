@@ -1,34 +1,48 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { jobService } from '@/services/jobService'
 import JobDetails from '@/components/jobs/JobDetails.vue'
 import type Job from '@/interfaces/Job'
 
-const route = useRoute()
 const router = useRouter()
-const jobId = route.params?.id ? Number(route.params.id) : 0
+const jobModel = {
+  id: 0,
+  title: '',
+  categoryId: 0,
+  category: '',
+  company: '',
+  description: '',
+  location: '',
+  createdAt: ''
+} as Job
 
-const job = ref<Job>()
+const job = ref<Job>(jobModel)
 
-const getJobDetails = (jobId: number) => {
+const getJobDetails = (jobId: number): Job | null => {
   const response = jobService.get(jobId)
-  return response.data
+  if (response?.data) return response.data
+  else return null
 }
 
 const goToJobs = () => {
   router.push({ name: 'jobs' })
 }
 
-if (jobId) {
-  job.value = getJobDetails(jobId)
-}
+onMounted(async () => {
+  const route = useRoute()
+  const jobId = route.params?.id ? Number(route.params.id) : 0
+  const jobDetails = getJobDetails(jobId)
+  if (jobDetails?.id) {
+    job.value = jobDetails
+  }
+})
 </script>
 
 <template>
   <div class="job">
     <div>
-      <v-btn flat icon="arrow_back" @click="goToJobs"></v-btn>
+      <v-btn density="comfortable" flat icon="arrow_back" @click="goToJobs"></v-btn>
       Back
     </div>
 
@@ -37,7 +51,7 @@ if (jobId) {
     </div>
 
     <div class="job d-flex justify-center flex-column align-center">
-      <JobDetails :job="job" />
+      <JobDetails :job="job" v-if="job.id" />
     </div>
   </div>
 </template>

@@ -10,7 +10,7 @@ defineProps({
 })
 </script>
 <template>
-  <v-card :subtitle="job.company">
+  <v-card min-width="90%" :subtitle="job.company">
     <template v-slot:title>
       <span class="text-h5">{{ job.title }}</span>
     </template>

@@ -9,8 +9,15 @@ export const jobService = {
 
   get: (jobId: number) => {
     const job = jobList.find(({ id }) => id === jobId)
-    return {
-      data: job
+    if (job?.id) {
+      return {
+        data: job
+      }
+    } else {
+      return {
+        code: 404,
+        error: 'Job does not exist'
+      }
     }
   }
 }
