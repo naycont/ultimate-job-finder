@@ -5,9 +5,9 @@
     "categoryId": 1,
     "category": "Frontend",
     "company": "TechCorp",
-    "description": "We're looking for a Vue.js developer...",
+    "description": "Awesome opportunity for a Vue.js frontend Jedi with a background in Laravel and a passion for software engineering. Come join an industry-leading company and enjoy the flexibility of remote work while being surrounded by a friendly, capable team.",
     "location": "Remote",
-    "createdAt": "02-21-2025"
+    "createdAt": "02-25-2025"
   },
   {
     "id": 2,
@@ -25,8 +25,18 @@
     "categoryId": 7,
     "category": "UX/UI",
     "company": "DevFirm",
-    "description": "We are looking for a UI/Marketing Designer...",
+    "description": "As Senior UX Consultant (with visual skills), you work inside the Professional Services Department, where you create the designs & wires for complex web applications (like Online Banking). You work closely with our customers to design end-to-end user experiences from the ground up. You define user journeys and intuitive designs. Within Backbase we have our own UX process that includes utilizing our UX pattern library and style guides to create wireframes, visual designs and other UX documentations.",
     "location": "On site",
     "createdAt": "02-20-2025"
+  },
+  {
+    "id": 4,
+    "title": "Senior DevOps Engineer",
+    "description": "Avahi is seeking a Senior AWS DevOps Engineer to join our passionate and skilled team. This role presents a unique opportunity for a seasoned professional to drive the architecture, implementation, and management of AWS infrastructure, migration, modernization, and DevOps practices. The ideal candidate will play a pivotal role in shaping our technical landscape, optimizing project delivery processes, and contributing to our overall success. ",
+    "categoryId": 4,
+    "category": "DevOps",
+    "company": "Avahi",
+    "location": "Remote",
+    "createdAt": "02-19-2025"
   }
 ]
