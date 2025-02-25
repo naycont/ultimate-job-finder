@@ -5,6 +5,7 @@ import { jobService } from '@/services/jobService'
 import type Job from '@/interfaces/Job'
 
 const jobs = ref<Job[]>([])
+const searchBox = ref<string>('')
 
 const getJobList = (): Array<Job> => {
   const response = jobService.query()
@@ -26,14 +27,33 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <div class="job d-flex justify-center flex-column align-center">
-    <div class="text-h2 my-4">Find what's next:</div>
-    <JobList :items="jobs" />
+  <div class="jobs">
+    <div class="d-flex justify-center text-h2 my-4">Find what's next:</div>
+
+    <div class="d-flex flex-wrap ga-4 justify-center align-center my-4">
+      <v-text-field
+        v-model="searchBox"
+        variant="outlined"
+        label="Search Job"
+        clearable
+        max-width="300px"
+        bg-color="#fff"
+        hide-details
+        rounded
+      ></v-text-field>
+
+      <v-btn color="primary"> Search </v-btn>
+    </div>
+
+    <div class="d-flex justify-center flex-column align-center mt-2">
+      <JobList :items="jobs" />
+    </div>
   </div>
 </template>
 
 <style>
-.job {
+.jobs {
   width: 90%;
+  margin: auto;
 }
 </style>

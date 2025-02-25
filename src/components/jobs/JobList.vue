@@ -17,7 +17,7 @@ const goToDetails = (jobId: number) => {
 }
 </script>
 <template>
-  <div>
+  <div class="w-100">
     <v-table>
       <thead>
         <tr>
