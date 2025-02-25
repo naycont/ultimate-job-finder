@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { jobService } from '@/services/jobService'
 import JobDetails from '@/components/jobs/JobDetails.vue'
+import JobApplication from '@/components/jobs/JobApplication.vue'
 import type Job from '@/interfaces/Job'
 
 const router = useRouter()
@@ -29,6 +30,12 @@ const goToJobs = () => {
   router.push({ name: 'jobs' })
 }
 
+const activeTab = ref<string>('job')
+
+const apply = () => {
+  activeTab.value = 'application'
+}
+
 onMounted(async () => {
   const route = useRoute()
   const jobId = route.params?.id ? Number(route.params.id) : 0
@@ -41,24 +48,34 @@ onMounted(async () => {
 
 <template>
   <div class="job">
-    <div>
-      <v-btn density="comfortable" flat icon="arrow_back" @click="goToJobs"></v-btn>
+    <div class="mb-4">
+      <v-btn class="mr-1" density="comfortable" flat icon="arrow_back" @click="goToJobs"></v-btn>
       Back
     </div>
+    <v-container>
+      <v-tabs v-model="activeTab" align-tabs="center">
+        <v-tab value="job">Job Details</v-tab>
+        <v-tab value="application">Application</v-tab>
+      </v-tabs>
+      <v-tabs-window v-model="activeTab">
+        <v-tabs-window-item value="job">
+          <div class="d-flex justify-end mb-4">
+            <v-btn color="primary" @click="apply">Apply</v-btn>
+          </div>
+          <JobDetails :job="job" v-if="job.id" />
+        </v-tabs-window-item>
 
-    <div class="d-flex justify-end mb-4">
-      <v-btn color="primary">Apply</v-btn>
-    </div>
-
-    <div class="job d-flex justify-center flex-column align-center">
-      <JobDetails :job="job" v-if="job.id" />
-    </div>
+        <v-tabs-window-item value="application">
+          <JobApplication :job="job" />
+        </v-tabs-window-item>
+      </v-tabs-window>
+    </v-container>
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .job {
-  width: 60%;
-  margin: auto;
+  min-height: 100%;
+  padding: var(--ui-padding);
 }
 </style>

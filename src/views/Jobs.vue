@@ -43,7 +43,7 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <div class="jobs">
+  <div>
     <div class="d-flex justify-center text-h2 my-4">Find what's next:</div>
 
     <JobFilters @search-job="onSearchJob" @clear-filters="onClearFilters" />
@@ -53,10 +53,3 @@ onMounted(async () => {
     </div>
   </div>
 </template>
-
-<style>
-.jobs {
-  width: 90%;
-  margin: auto;
-}
-</style>

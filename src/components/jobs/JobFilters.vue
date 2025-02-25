@@ -27,7 +27,7 @@ getCategories()
     <v-text-field
       v-model="searchString"
       variant="outlined"
-      label="Search Job"
+      label="Search Job title"
       max-width="300px"
       bg-color="#fff"
       hide-details
