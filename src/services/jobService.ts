@@ -1,4 +1,5 @@
 import jobList from '@/services/mockData/jobsList.json'
+import JobQueryParams from '@/interfaces/JobQueryParams'
 
 export const jobService = {
   query: () => {
@@ -18,6 +19,19 @@ export const jobService = {
         code: 404,
         error: 'Job does not exist'
       }
+    }
+  },
+
+  filter: (params: JobQueryParams) => {
+    const { searchString } = params
+
+    const filteredJobs = jobList.filter(({ title }) => {
+      const found = title.search(new RegExp(searchString, 'i'))
+      return found >= 0
+    })
+
+    return {
+      data: filteredJobs
     }
   }
 }

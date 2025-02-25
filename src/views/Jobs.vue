@@ -29,10 +29,8 @@ const getJobList = (): Array<Job> => {
 const onSearchJob = (searchString: string): void => {
   if (searchString.trim() === '') return
 
-  const filteredJobs = originalJobs.filter(({ title }) => {
-    const found = title.search(new RegExp(searchString, 'i'))
-    return found >= 0
-  })
+  const response = jobService.filter({ searchString })
+  const filteredJobs = response?.data?.length ? response.data : []
 
   jobs.value = filteredJobs
 }
