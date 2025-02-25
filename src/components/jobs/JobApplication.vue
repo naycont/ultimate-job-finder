@@ -39,15 +39,16 @@ const submitAplication = async (event: SubmitEvent) => {
   //TODO:
   // implement file uploader logic, to get file url
 
-  const { valid } = await jobApplicationForm.value?.validate()
+  const { valid } = jobApplicationForm?.value
+    ? await jobApplicationForm.value.validate()
+    : { valid: false }
 
   if (valid) {
     // send to API
     try {
       isLoading.value = true
       const response = await applicationService.sendApplication(jobApplication.value)
-      console.log(response)
-      if (response?.data) {
+      if (response) {
         navigationStore.toggle({
           opened: true,
           type: 'success',
