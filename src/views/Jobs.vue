@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import JobList from '@/components/jobs/JobList.vue'
+import JobFilters from '@/components/jobs/JobFilters.vue'
 import { jobService } from '@/services/jobService'
 import type Job from '@/interfaces/Job'
 
 const jobs = ref<Job[]>([])
-const searchBox = ref<string>('')
+let originalJobs: Job[] = []
 
 const getJobList = (): Array<Job> => {
   const response = jobService.query()
@@ -19,7 +20,25 @@ const getJobList = (): Array<Job> => {
         }
       })
     : []
+
+  originalJobs = [...jobList]
+
   return jobList
+}
+
+const onSearchJob = (searchString: string): void => {
+  if (searchString.trim() === '') return
+
+  const filteredJobs = originalJobs.filter(({ title }) => {
+    const found = title.search(new RegExp(searchString, 'i'))
+    return found >= 0
+  })
+
+  jobs.value = filteredJobs
+}
+
+const onClearSearchBox = () => {
+  jobs.value = [...originalJobs]
 }
 
 onMounted(async () => {
@@ -30,22 +49,9 @@ onMounted(async () => {
   <div class="jobs">
     <div class="d-flex justify-center text-h2 my-4">Find what's next:</div>
 
-    <div class="d-flex flex-wrap ga-4 justify-center align-center my-4">
-      <v-text-field
-        v-model="searchBox"
-        variant="outlined"
-        label="Search Job"
-        clearable
-        max-width="300px"
-        bg-color="#fff"
-        hide-details
-        rounded
-      ></v-text-field>
+    <JobFilters @search-job="onSearchJob" @clearSearchBox="onClearSearchBox" />
 
-      <v-btn color="primary"> Search </v-btn>
-    </div>
-
-    <div class="d-flex justify-center flex-column align-center mt-2">
+    <div class="d-flex justify-center flex-column align-center mt-4">
       <JobList :items="jobs" />
     </div>
   </div>
