@@ -23,34 +23,37 @@ const clearFilters = () => {
 getCategories()
 </script>
 <template>
-  <div class="d-flex flex-wrap ga-4 justify-center align-center">
-    <v-text-field
-      v-model="searchString"
-      variant="outlined"
-      label="Search Job title"
-      max-width="300px"
-      bg-color="#fff"
-      hide-details
-      rounded
-    ></v-text-field>
+  <v-row justify="center" class="align-center mt-2">
+    <v-col cols="12" sm="12" md="6" lg="3">
+      <v-text-field
+        v-model="searchString"
+        variant="outlined"
+        label="Search Job title"
+        bg-color="#fff"
+        hide-details
+        rounded
+      ></v-text-field>
+    </v-col>
 
-    <v-select
-      v-model="categoryId"
-      max-width="250px"
-      :items="categories"
-      label="Categories"
-      item-title="name"
-      item-value="id"
-      bg-color="#fff"
-      variant="outlined"
-      hide-details
-      rounded
-    ></v-select>
+    <v-col cols="12" sm="12" md="6" lg="3">
+      <v-select
+        v-model="categoryId"
+        :items="categories"
+        label="Categories"
+        item-title="name"
+        item-value="id"
+        bg-color="#fff"
+        variant="outlined"
+        hide-details
+        rounded
+      ></v-select>
+    </v-col>
 
-    <v-btn color="primary" @click="$emit('searchJob', { searchString, categoryId })">
-      Search
-    </v-btn>
-
-    <v-btn variant="text" @click="clearFilters"> Clear filters </v-btn>
-  </div>
+    <v-col cols="12" sm="12" md="12" lg="6" class="d-flex justify-end">
+      <v-btn color="primary" @click="$emit('searchJob', { searchString, categoryId })">
+        Search
+      </v-btn>
+      <v-btn variant="text" @click="clearFilters"> Clear filters </v-btn>
+    </v-col>
+  </v-row>
 </template>
