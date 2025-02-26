@@ -14,6 +14,7 @@ defineProps({
     <v-col sm="12" md="6" lg="6" xl="4">
       <v-card :subtitle="job.company">
         <template v-slot:title>
+          <div class="d-flex align-center justify-end"> <span class="text-caption font-weight-thin">{{ job.createdAt }}</span> </div>
           <span class="text-h5">{{ job.title }}</span>
         </template>
         <v-card-text>

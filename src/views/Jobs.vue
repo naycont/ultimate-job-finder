@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import JobList from '@/components/jobs/JobList.vue'
+import JobCards from '@/components/jobs/JobCards.vue'
 import JobFilters from '@/components/jobs/JobFilters.vue'
 import { jobService } from '@/services/jobService'
 import type Job from '@/interfaces/Job'
@@ -55,5 +56,7 @@ onMounted(async () => {
     <div class="d-flex justify-center flex-column align-center mt-4">
       <JobList :items="jobs" />
     </div>
+
+    
   </div>
 </template>
