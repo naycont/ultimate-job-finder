@@ -7,15 +7,21 @@ import { jobService } from '@/services/jobService'
 import type Job from '@/interfaces/Job'
 import type JobQueryParams from '@/interfaces/JobQueryParams'
 
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+
 const jobs = ref<Job[]>([])
 let originalJobs: Job[] = []
+
+// responsiveness added: get breakpoints to switch view cards instead of list
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const isSmallerThanLg = breakpoints.smaller('lg')
 
 const getJobList = (): Array<Job> => {
   const response = jobService.query()
 
   const jobList: Array<Job> = response?.data?.length
     ? response.data.map((jobItem) => {
-        const description = jobItem.description.substring(0, 60).concat('...')
+        const description = jobItem.description.substring(0, 120).concat('...')
         return {
           ...jobItem,
           description
@@ -54,7 +60,8 @@ onMounted(async () => {
     <JobFilters @search-job="onSearchJob" @clear-filters="onClearFilters" />
 
     <div class="d-flex justify-center flex-column align-center mt-4">
-      <JobList :items="jobs" />
+      <JobCards :items="jobs" v-if="isSmallerThanLg"/>
+      <JobList :items="jobs" v-else/>
     </div>
 
     

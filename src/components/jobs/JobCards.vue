@@ -47,7 +47,7 @@ const goToDetails = (jobId: number) => {
 <style lang="scss">
 .job-card {
   &__content {
-    height: 150px;
+    height: 180px;
   }
 }
 </style>
