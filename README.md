@@ -75,7 +75,7 @@ npm run build
 
 ## deployed application
 
-https://naycont.github.io/ultimate-job-finder/jobs
+https://naycont.github.io/ultimate-job-finder/
 
 ## Type Support for `.vue` Imports in TS
 
