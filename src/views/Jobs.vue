@@ -30,7 +30,7 @@ const getJobList = (): Array<Job> => {
 const onSearchJob = (params: JobQueryParams): void => {
   const { searchString, categoryId } = params
 
-  if (searchString.trim() === '' || !Boolean(categoryId)) return
+  if (searchString.trim() === '' && !Boolean(categoryId)) return
 
   const response = jobService.filter(params)
   const filteredJobs = response?.data?.length ? response.data : []
