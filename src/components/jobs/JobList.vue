@@ -37,7 +37,7 @@ const goToDetails = (jobId: number) => {
           <td>{{ job.location }}</td>
           <td>{{ job.description }}</td>
           <td>
-            <v-chip color="accent">
+            <v-chip color="secondary" variant="tonal">
               {{ job.category }}
             </v-chip>
           </td>

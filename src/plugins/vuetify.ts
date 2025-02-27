@@ -7,6 +7,8 @@ import * as directives from 'vuetify/directives'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import { aliases, md } from 'vuetify/iconsets/md'
 
+import colors from 'vuetify/util/colors'
+
 export default createVuetify({
   components,
   directives,
@@ -15,6 +17,18 @@ export default createVuetify({
     aliases,
     sets: {
       md
+    }
+  },
+  theme: {
+    themes: {
+      light: {
+        dark: false,
+        colors: {
+          primary: '#006EDB',
+          secondary: '#6fa2d0',//colors.blueGrey.base,
+          accent: colors.pink.darken1,
+        }
+      }
     }
   }
 })

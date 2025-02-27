@@ -66,11 +66,11 @@ const submitAplication = async (event: SubmitEvent) => {
 </script>
 <template>
   <v-row justify="center" class="mt-2">
-    <v-col sm="12" md="6" lg="6" xl="4">
+    <v-col cols="12" sm="10" md="8" lg="6" xl="4">
       <div class="d-flex flex-column">
         <span class="text-h5">{{ job.title }}</span>
         <span class="text-subtitle-2">{{ job.company }}</span>
-        <span class="mt-2"> <v-icon>location_on</v-icon> {{ job.location }} </span>
+        <span class="mt-2"><v-icon color="grey-darken-1">location_on</v-icon> {{ job.location }} </span>
       </div>
       <v-card class="mt-4 pa-4">
         <div class="d-flex flex-column">
