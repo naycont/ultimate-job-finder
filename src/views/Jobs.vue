@@ -60,7 +60,9 @@ onMounted(async () => {
 </script>
 <template>
   <div>
-    <div class="d-flex justify-center text-h2 my-4">Find what's next:</div>
+    <div class="d-flex justify-center text-h2 my-4">
+      <div>Find what's <span class="text-accent"> next: </span> </div>
+    </div>
 
     <JobFilters @search-job="onSearchJob" @clear-filters="onClearFilters" />
 

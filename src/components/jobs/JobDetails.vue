@@ -18,7 +18,7 @@ defineProps({
           <span class="text-h5">{{ job.title }}</span>
         </template>
         <v-card-text>
-          <v-chip color="accent">
+          <v-chip color="secondary" variant="tonal">
             {{ job.category }}
           </v-chip>
 
@@ -26,7 +26,7 @@ defineProps({
             <v-divider></v-divider>
             <div class="d-flex flex-column py-4">
               <span class="text-h6">Location </span>
-              <span class="mt-4"> <v-icon>location_on</v-icon> {{ job.location }} </span>
+              <span class="mt-4"> <v-icon color="grey-darken-1">location_on</v-icon> {{ job.location }} </span>
             </div>
             <v-divider></v-divider>
           </div>

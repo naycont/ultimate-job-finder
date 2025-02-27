@@ -25,11 +25,11 @@ const goToDetails = (jobId: number) => {
           <span class="text-h5">{{ job.title }}</span>
         </template>
         <v-card-text class="job-card__content">
-          <v-chip color="accent">
+          <v-chip color="secondary" variant="tonal">
             {{ job.category }}
           </v-chip>
           <div class="d-flex flex-column mt-4">
-          <span> <v-icon>location_on</v-icon> {{ job.location }} </span>
+          <span> <v-icon color="grey-darken-1">location_on</v-icon> {{ job.location }} </span>
           <p class="mt-4">{{ job.description }}</p>
           </div>
         </v-card-text>

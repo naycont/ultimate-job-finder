@@ -37,7 +37,7 @@ getCategories()
 <template>
   <v-form>
     <v-row justify="center" class="align-center mt-2">
-      <v-col cols="12" sm="12" md="6" lg="3">
+      <v-col cols="12" sm="10" md="6" lg="3">
         <v-text-field
           v-model="searchString"
           variant="outlined"
@@ -48,7 +48,7 @@ getCategories()
         ></v-text-field>
       </v-col>
 
-      <v-col cols="12" sm="12" md="6" lg="3">
+      <v-col cols="12" sm="10" md="6" lg="3">
         <v-select
           v-model="categoryId"
           :items="categories"
@@ -64,7 +64,7 @@ getCategories()
         ></v-select>
       </v-col>
 
-      <v-col cols="12" sm="12" md="12" lg="6" class="d-flex justify-end">
+      <v-col cols="12" sm="10" md="12" lg="6" class="d-flex justify-end">
         <v-btn type="submit" color="primary" @click="onSearchJob">
           Search
         </v-btn>

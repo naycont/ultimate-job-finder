@@ -70,7 +70,7 @@ const submitAplication = async (event: SubmitEvent) => {
       <div class="d-flex flex-column">
         <span class="text-h5">{{ job.title }}</span>
         <span class="text-subtitle-2">{{ job.company }}</span>
-        <span class="mt-2"> <v-icon>location_on</v-icon> {{ job.location }} </span>
+        <span class="mt-2"><v-icon color="grey-darken-1">location_on</v-icon> {{ job.location }} </span>
       </div>
       <v-card class="mt-4 pa-4">
         <div class="d-flex flex-column">

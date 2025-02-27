@@ -53,7 +53,7 @@ onMounted(async () => {
       Back
     </div>
     <v-container class="mt-0 pa-0">
-      <v-tabs v-model="activeTab" align-tabs="center" class="mt-0">
+      <v-tabs v-model="activeTab" align-tabs="center" class="mt-0" color="secondary">
         <v-tab value="job">Job Details</v-tab>
         <v-tab value="application">Application</v-tab>
       </v-tabs>
