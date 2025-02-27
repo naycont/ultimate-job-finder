@@ -20,13 +20,7 @@ const getJobList = (): Array<Job> => {
   const response = jobService.query()
 
   const jobList: Array<Job> = response?.data?.length
-    ? response.data.map((jobItem) => {
-        const description = jobItem.description.substring(0, 120).concat('...')
-        return {
-          ...jobItem,
-          description
-        }
-      })
+    ? response.data.map((job) => mapJob(job))
     : []
 
   originalJobs = [...jobList]
@@ -34,13 +28,24 @@ const getJobList = (): Array<Job> => {
   return jobList
 }
 
+const mapJob = (job: Job): Job => {
+  const description = job.description.substring(0, 120).concat('...')
+  return {
+    ...job,
+    description
+  }
+}
+
 const onSearchJob = (params: JobQueryParams): void => {
   const { searchString, categoryId } = params
 
-  if (searchString.trim() === '' && !Boolean(categoryId)) return
+  if (searchString.trim() === '' && !Boolean(categoryId)) { 
+    onClearFilters()
+    return
+  }
 
   const response = jobService.filter(params)
-  const filteredJobs = response?.data?.length ? response.data : []
+  const filteredJobs = response?.data?.length ? response.data.map((job) => mapJob(job)) : []
 
   jobs.value = filteredJobs
 }

@@ -20,40 +20,56 @@ const clearFilters = () => {
   emit('clearFilters')
 }
 
+const emitJobSearch = () => {
+  emit('searchJob', { 
+    searchString: searchString.value,
+    categoryId: categoryId.value 
+  })
+}
+
+const onSearchJob = (event: SubmitEvent) => {
+  event.preventDefault()
+  emitJobSearch()
+}
+
 getCategories()
 </script>
 <template>
-  <v-row justify="center" class="align-center mt-2">
-    <v-col cols="12" sm="12" md="6" lg="3">
-      <v-text-field
-        v-model="searchString"
-        variant="outlined"
-        label="Search Job title"
-        bg-color="#fff"
-        hide-details
-        rounded
-      ></v-text-field>
-    </v-col>
+  <v-form>
+    <v-row justify="center" class="align-center mt-2">
+      <v-col cols="12" sm="12" md="6" lg="3">
+        <v-text-field
+          v-model="searchString"
+          variant="outlined"
+          label="Search Job title"
+          bg-color="#fff"
+          hide-details
+          rounded
+        ></v-text-field>
+      </v-col>
 
-    <v-col cols="12" sm="12" md="6" lg="3">
-      <v-select
-        v-model="categoryId"
-        :items="categories"
-        label="Categories"
-        item-title="name"
-        item-value="id"
-        bg-color="#fff"
-        variant="outlined"
-        hide-details
-        rounded
-      ></v-select>
-    </v-col>
+      <v-col cols="12" sm="12" md="6" lg="3">
+        <v-select
+          v-model="categoryId"
+          :items="categories"
+          label="Categories"
+          item-title="name"
+          item-value="id"
+          bg-color="#fff"
+          variant="outlined"
+          hide-details
+          rounded
+          @update:model-value="emitJobSearch"
+          clearable
+        ></v-select>
+      </v-col>
 
-    <v-col cols="12" sm="12" md="12" lg="6" class="d-flex justify-end">
-      <v-btn color="primary" @click="$emit('searchJob', { searchString, categoryId })">
-        Search
-      </v-btn>
-      <v-btn variant="text" @click="clearFilters"> Clear filters </v-btn>
-    </v-col>
-  </v-row>
+      <v-col cols="12" sm="12" md="12" lg="6" class="d-flex justify-end">
+        <v-btn type="submit" color="primary" @click="onSearchJob">
+          Search
+        </v-btn>
+        <v-btn variant="text" @click="clearFilters"> Clear filters </v-btn>
+      </v-col>
+    </v-row>
+  </v-form>
 </template>
